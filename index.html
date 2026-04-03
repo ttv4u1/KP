@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sistem Perutusan Kenaikan Pangkat BPK</title>
+    <title>Utusan Rasmi Kenaikan Pangkat BPK</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Orbitron:wght@400;700&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Orbitron:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,600&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -14,8 +14,7 @@
             --blue-navy: #010811;
             --glass: rgba(255, 255, 255, 0.05);
             --glass-border: rgba(255, 255, 255, 0.12);
-            --panel-width: 1028px;
-            --panel-height: 733px;
+            --panel-max: 1028px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
@@ -28,7 +27,7 @@
             overflow-x: hidden;
         }
 
-        /* --- BACKGROUND INFOGRAPHIC & JATA --- */
+        /* --- INFOGRAPHIC BACKGROUND & WATERMARK --- */
         .bg-system {
             position: fixed;
             inset: 0;
@@ -44,12 +43,12 @@
             background-size: 50px 50px;
             transform: perspective(1000px) rotateX(60deg) translateY(-50%);
             animation: gridFlow 25s infinite linear;
-            opacity: 0.5;
+            opacity: 0.4;
         }
 
         @keyframes gridFlow { from { background-position: 0 0; } to { background-position: 0 50px; } }
 
-        .jata-bg-watermark {
+        .jata-watermark {
             position: fixed;
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
@@ -59,8 +58,8 @@
             pointer-events: none;
         }
 
-        /* --- LOGO SYSTEM (Fixed & Uniform) --- */
-        .logo-container {
+        /* --- UNIFORM LOGO SYSTEM (Fixed 90px) --- */
+        .logo-row {
             display: flex;
             justify-content: center;
             gap: 15px;
@@ -68,12 +67,12 @@
         }
 
         .logo-box {
-            width: 90px; height: 90px; /* Saiz Seragam */
+            width: 85px; height: 85px;
             background: var(--glass);
             backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
-            border-radius: 15px;
-            padding: 12px;
+            border-radius: 12px;
+            padding: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -96,20 +95,20 @@
         }
 
         .btn-init {
-            padding: 20px 50px;
+            padding: 18px 45px;
             background: transparent;
             color: var(--gold);
             border: 1px solid var(--gold);
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
-            letter-spacing: 5px;
+            letter-spacing: 4px;
             cursor: pointer;
-            transition: 0.5s;
+            transition: 0.4s;
         }
 
-        .btn-init:hover { background: var(--gold); color: #000; box-shadow: 0 0 50px var(--gold); }
+        .btn-init:hover { background: var(--gold); color: #000; box-shadow: 0 0 40px var(--gold); }
 
-        /* --- MAIN CONTENT AREA --- */
+        /* --- MAIN UI --- */
         #main-ui {
             display: none;
             opacity: 0;
@@ -118,47 +117,45 @@
             transition: 1.5s;
         }
 
-        /* --- FORMAL GLASS PANEL (Dimensi 1028x733 Concept) --- */
+        /* --- FORMAL GLASS PANEL --- */
         .formal-panel {
             background: var(--glass);
             backdrop-filter: blur(30px);
             -webkit-backdrop-filter: blur(30px);
             border: 1px solid var(--glass-border);
             width: 100%;
-            max-width: var(--panel-width);
-            min-height: 400px; /* Auto scale for mobile */
+            max-width: var(--panel-max);
             margin: 0 auto 50px;
-            padding: clamp(20px, 5vw, 60px);
+            padding: clamp(25px, 5vw, 60px);
             position: relative;
             overflow: hidden;
             border-radius: 4px;
         }
 
-        /* Light Refraction Effect */
+        /* Real-time Glass Reflection Effect */
         .formal-panel::before, .card::before {
             content: "";
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.12) 0%, transparent 60%);
+            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.1) 0%, transparent 60%);
             opacity: 0; transition: opacity 0.3s;
             pointer-events: none;
         }
         .formal-panel:hover::before, .card:hover::before { opacity: 1; }
 
         .formal-panel h2 { font-family: 'Playfair Display', serif; color: var(--gold); font-size: clamp(1.4rem, 4vw, 2.2rem); margin-bottom: 25px; }
-        .formal-panel p { line-height: 1.8; color: #cbd5e1; font-size: clamp(0.85rem, 2vw, 1rem); }
 
         /* --- GRID --- */
         .grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
-            max-width: var(--panel-width);
+            max-width: var(--panel-max);
             margin: auto;
         }
 
         @media (min-width: 768px) {
-            .grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; }
+            .grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 25px; }
         }
 
         .card {
@@ -170,65 +167,69 @@
             cursor: pointer;
             transition: 0.4s;
             position: relative;
+            overflow: hidden;
         }
 
         .card:hover { border-color: var(--gold); transform: translateY(-8px); }
 
-        .img-wrap {
+        .img-crop {
             width: 100%;
-            aspect-ratio: 1028 / 1300; /* Disesuaikan dengan nisbah sijil */
+            aspect-ratio: 3/4;
             background: #000;
             margin-bottom: 12px;
             overflow: hidden;
             border: 1px solid rgba(212, 175, 55, 0.2);
         }
 
-        .img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+        .img-crop img { width: 100%; height: 100%; object-fit: cover; }
 
         .card h3 { font-size: 0.7rem; letter-spacing: 0.5px; height: 35px; display: flex; align-items: center; justify-content: center; }
         .card p { font-size: 0.6rem; color: var(--gold); font-weight: 700; }
 
-        /* --- MODAL (Details) --- */
+        /* --- FULL VIEW MODAL (Saiz Asal) --- */
         #modal {
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.95);
+            background: rgba(0,0,0,0.98);
             z-index: 6000;
             display: none;
             justify-content: center;
             align-items: center;
-            padding: 15px;
-            backdrop-filter: blur(25px);
+            padding: 20px;
+            backdrop-filter: blur(20px);
         }
 
-        .modal-box {
-            background: #010811;
+        .modal-container {
             width: 100%;
-            max-width: 1028px; /* Menggunakan saiz input anda */
-            height: auto;
-            max-height: 90vh;
+            max-width: var(--panel-max);
+            max-height: 95vh;
+            background: var(--blue-navy);
             border: 1px solid var(--gold);
-            padding: 40px 20px;
+            border-radius: 15px;
+            padding: 30px 15px;
             position: relative;
             text-align: center;
             overflow-y: auto;
-            box-shadow: 0 0 60px rgba(212, 175, 55, 0.2);
+            animation: zoomIn 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        .modal-photo {
-            width: clamp(150px, 30vw, 220px);
+        @keyframes zoomIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+
+        .modal-full-img {
+            width: auto;
+            max-width: 100%;
             height: auto;
-            aspect-ratio: 1028/1300;
+            max-height: 65vh; /* Biar nampak saiz asal tapi tak melimpah skrin */
             margin: 20px auto;
-            border: 2px solid var(--gold);
+            border: 3px solid var(--gold);
             padding: 5px;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+            display: block;
         }
 
-        .modal-photo img { width: 100%; height: 100%; object-fit: cover; }
+        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 2.5rem; color: var(--gold); cursor: pointer; z-index: 10; }
 
-        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 2rem; color: var(--gold); cursor: pointer; }
-
-        footer { margin-top: 80px; text-align: center; border-top: 1px solid var(--glass-border); padding: 40px; opacity: 0.6; font-size: 0.7rem; }
+        footer { margin-top: 60px; text-align: center; border-top: 1px solid var(--glass-border); padding: 40px; opacity: 0.6; font-size: 0.7rem; }
     </style>
 </head>
 <body>
@@ -237,24 +238,22 @@
         <source src="https://github.com/ttv4u1/KP/raw/main/PA.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Backgrounds -->
     <div class="bg-system"><div class="cyber-grid"></div></div>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Coat_of_arms_of_Malaysia.svg/500px-Coat_of_arms_of_Malaysia.svg.png" class="jata-bg-watermark">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Coat_of_arms_of_Malaysia.svg/500px-Coat_of_arms_of_Malaysia.svg.png" class="jata-watermark">
 
     <!-- LANDING -->
     <div id="landing">
-        <div class="logo-container">
+        <div class="logo-row">
             <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Coat_of_arms_of_Malaysia.svg/500px-Coat_of_arms_of_Malaysia.svg.png"></div>
             <div class="logo-box"><img src="https://github.com/ttv4u1/KP/raw/main/logo%20DVS%20-%20logo%20Veterinar.png"></div>
             <div class="logo-box"><img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png"></div>
         </div>
-        <h3 style="font-family:'Orbitron', sans-serif; letter-spacing: 4px; color:var(--gold);">SYSTEM INITIALIZATION</h3>
-        <button class="btn-init" onclick="launch()">BUKA UTUSAN</button>
+        <button class="btn-init" onclick="launch()">BUKA PERUTUSAN</button>
     </div>
 
     <!-- MAIN UI -->
     <div id="main-ui">
-        <div class="logo-container">
+        <div class="logo-row">
             <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Coat_of_arms_of_Malaysia.svg/500px-Coat_of_arms_of_Malaysia.svg.png"></div>
             <div class="logo-box"><img src="https://github.com/ttv4u1/KP/raw/main/logo%20DVS%20-%20logo%20Veterinar.png"></div>
             <div class="logo-box"><img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png"></div>
@@ -264,13 +263,13 @@
             <h2>Assalamualaikum dan salam sejahtera,</h2>
             <p>
                 Tuan/Puan,<br><br>
-                Dengan sukacitanya dimaklumkan bahawa beberapa pegawai dari <b>Bahagian Penguatkuasa Veterinar (BPK)</b> telah berjaya dalam urusan kenaikan pangkat.<br><br>
-                Pihak BPK ingin merakamkan setinggi-tinggi tahniah dan penghargaan atas kejayaan tersebut. Semoga kenaikan pangkat ini menjadi pemangkin untuk terus memberikan perkhidmatan yang cemerlang dan berintegriti.<br><br>
+                Dengan sukacitanya dimaklumkan bahawa beberapa pegawai dari <b>Bahagian Penguatkuasa Veterinar</b> telah berjaya dalam urusan kenaikan pangkat.<br><br>
+                Sehubungan itu, pihak BPK ingin merakamkan setinggi-tinggi tahniah dan penghargaan atas kejayaan tersebut. Semoga kenaikan pangkat ini menjadi pemangkin untuk terus memberikan perkhidmatan yang cemerlang dan berintegriti.<br><br>
                 Sekali lagi, tahniah dan syabas 👮🏻‍♂️
             </p>
-            <div style="margin-top: 30px; border-top: 1px solid var(--gold); padding-top: 20px;">
-                <p style="font-weight: 700; color: var(--gold); text-transform: uppercase;">Bahagian Penguatkuasa Veterinar</p>
-                <p style="font-size: 0.75rem; opacity: 0.5;">3 April 2026</p>
+            <div style="margin-top: 35px; border-top: 1px solid var(--gold); padding-top: 20px;">
+                <p style="font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 1px;">Bahagian Penguatkuasa Veterinar</p>
+                <p style="font-size: 0.8rem; opacity: 0.6; margin-top: 5px;">3 April 2026</p>
             </div>
         </div>
 
@@ -281,74 +280,86 @@
         </footer>
     </div>
 
-    <!-- MODAL -->
+    <!-- FULL VIEW MODAL -->
     <div id="modal" onclick="closeModal()">
-        <div class="modal-box" onclick="event.stopPropagation()">
+        <div class="modal-container" onclick="event.stopPropagation()">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-            <div class="logo-container">
+            
+            <!-- 3 Logo dalam Detail View -->
+            <div class="logo-row" style="margin-bottom: 10px;">
                 <div class="logo-box" style="width:60px; height:60px;"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Coat_of_arms_of_Malaysia.svg/500px-Coat_of_arms_of_Malaysia.svg.png"></div>
-                <div class="logo-box" style="width:60px; height:60px;"><img src="https://github.com/ttv4u1/KP/raw/main/logo%20DVS%20-%20logo%20Veterinar.png"></div>
-                <div class="logo-box" style="width:60px; height:60px;"><img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png"></div>
+                <div class="logo-box" style="width:60px; height:60px;"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Logo_Jabatan_Perkhidmatan_Veterinar.png/640px-Logo_Jabatan_Perkhidmatan_Veterinar.png"></div>
+                <div class="logo-box" style="width:60px; height:60px;"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Badge_of_the_Royal_Malaysia_Police.svg/448px-Badge_of_the_Royal_Malaysia_Police.svg.png"></div>
             </div>
-            <div class="modal-photo" id="m-photo"></div>
-            <h2 id="m-name" style="font-family:'Orbitron', sans-serif; margin-bottom:10px; font-size: 1.2rem;"></h2>
-            <p id="m-rank" style="color:var(--gold); font-weight:700;"></p>
-            <p style="margin-top: 40px; font-size: 0.7rem; opacity: 0.5; font-style: italic;">"Peneraju Integriti Penguatkuasaan Veterinar"</p>
+
+            <img id="fullImg" class="modal-full-img" src="" alt="Saiz Asal">
+            
+            <div style="padding: 10px;">
+                <h2 id="fullName" style="font-family:'Orbitron', sans-serif; color:#fff; font-size: 1.3rem; margin-bottom: 8px;"></h2>
+                <p id="fullRank" style="color:var(--gold); font-weight:700; letter-spacing: 1px; font-size: 0.95rem;"></p>
+                <p style="margin-top: 25px; font-size: 0.75rem; opacity: 0.5; font-style: italic;">"Terus Cemerlang & Berintegriti"</p>
+            </div>
         </div>
     </div>
 
     <script>
         const staff = [
-            { name: "EN. MOHD AZONI BIN BIDIN", rank: "Gred KP2 ke Gred KP3", img: "https://github.com/ttv4u1/KP/raw/main/AZONI%20BIDIN.JPG" },
-            { name: "EN. MOHD RIZAL BIN AHMAD", rank: "Gred KP2 ke Gred KP3", img: "https://github.com/ttv4u1/KP/raw/main/RIZAL%20AHMAD.JPG" },
-            { name: "EN. MD YUNUS BIN MD LAZIN", rank: "Gred KP1 ke Gred KP2", img: "https://github.com/ttv4u1/KP/raw/main/YUNUS%20LAZIN.JPG" },
-            { name: "EN. MUHAMAD SHAFFIK BIN SINIP", rank: "Gred KP1 ke Gred KP2", img: "https://github.com/ttv4u1/KP/raw/main/SHAFFIK%20SINIP.JPG" },
-            { name: "EN. YUVARAJ A/L RAJENDRAN", rank: "Gred KP1 ke Gred KP2", img: "https://github.com/ttv4u1/KP/raw/main/YUVARAJ.JPG" },
-            { name: "EN. NIK MUHAMAD AFIS", rank: "Gred KP1 ke Gred KP2", img: "https://github.com/ttv4u1/KP/raw/main/AFIS%20NIK.JPG" },
-            { name: "EN. MUHAMMAD RAIMI BIN ABU", rank: "Gred KP1 ke Gred KP2", img: "https://github.com/ttv4u1/KP/raw/main/RAIMI%20ABU%20RAHIM.JPG" },
-            { name: "EN. MUHAMMAD SHAFEQ BIN MD", rank: "Gred KP1 ke Gred KP2", img: "https://github.com/ttv4u1/KP/raw/main/SHAFEQ%20MD%20KAMIL.JPG" },
-            { name: "EN. RADZI BIN HASHIM", rank: "Gred KP1 ke Gred KP2", img: "https://github.com/ttv4u1/KP/raw/main/RADZI%20HASHIM.JPG" },
-            { name: "EN. NURUL AZEAN BIN JA'AFAR", rank: "Gred KP1 ke Gred KP2", img: "https://github.com/ttv4u1/KP/raw/main/NURUL%20AZEAN.JPG" }
+            { name: "EN. MOHD AZONI BIN BIDIN", rank: "Pembantu Penguat Kuasa KP2 ke Gred KP3", img: "https://github.com/ttv4u1/KP/raw/main/AZONI%20BIDIN.JPG" },
+            { name: "EN. MOHD RIZAL BIN AHMAD", rank: "Pembantu Penguat Kuasa KP2 ke Gred KP3", img: "https://github.com/ttv4u1/KP/raw/main/RIZAL%20AHMAD.JPG" },
+            { name: "EN. MD YUNUS BIN MD LAZIN @ MD LAZIM", rank: "Pembantu Penguat Kuasa KP1 ke Gred KP2", img: "https://github.com/ttv4u1/KP/raw/main/YUNUS%20LAZIN.JPG" },
+            { name: "EN. MUHAMAD SHAFFIK BIN SINIP", rank: "Pembantu Penguat Kuasa KP1 ke Gred KP2", img: "https://github.com/ttv4u1/KP/raw/main/SHAFFIK%20SINIP.JPG" },
+            { name: "EN. YUVARAJ A/L RAJENDRAN", rank: "Pembantu Penguat Kuasa KP1 ke Gred KP2", img: "https://github.com/ttv4u1/KP/raw/main/YUVARAJ.JPG" },
+            { name: "EN. NIK MUHAMAD AFIS BIN NIK ABDULLAH", rank: "Pembantu Penguat Kuasa KP1 ke Gred KP2", img: "https://github.com/ttv4u1/KP/raw/main/AFIS%20NIK.JPG" },
+            { name: "EN. MUHAMMAD RAIMI BIN ABU RAHIM", rank: "Pembantu Penguat Kuasa KP1 ke Gred KP2", img: "https://github.com/ttv4u1/KP/raw/main/RAIMI%20ABU%20RAHIM.JPG" },
+            { name: "EN. MUHAMMAD SHAFEQ BIN MD KAMIL", rank: "Pembantu Penguat Kuasa KP1 ke Gred KP2", img: "https://github.com/ttv4u1/KP/raw/main/SHAFEQ%20MD%20KAMIL.JPG" },
+            { name: "EN. RADZI BIN HASHIM", rank: "Pembantu Penguat Kuasa KP1 ke Gred KP2", img: "https://github.com/ttv4u1/KP/raw/main/RADZI%20HASHIM.JPG" },
+            { name: "EN. NURUL AZEAN BIN JA'AFAR", rank: "Pembantu Penguat Kuasa KP1 ke Gred KP2", img: "https://github.com/ttv4u1/KP/raw/main/NURUL%20AZEAN.JPG" }
         ];
 
         const container = document.getElementById('staffGrid');
         staff.forEach((s, i) => {
             container.innerHTML += `
-                <div class="card" onclick="openModal(${i})">
-                    <div class="img-wrap"><img src="${s.img}" loading="lazy"></div>
+                <div class="card" onclick="openFullView(${i})">
+                    <div class="img-crop"><img src="${s.img}" loading="lazy"></div>
                     <h3>${s.name}</h3>
-                    <p>${s.rank}</p>
+                    <p>${s.rank.split('ke').pop()}</p>
                 </div>
             `;
         });
 
         function launch() {
-            document.getElementById('audio').play();
+            const a = document.getElementById('audio');
+            a.play().catch(() => console.log("Audio Enabled"));
             document.getElementById('landing').style.transform = 'translateY(-100%)';
-            const m = document.getElementById('main-ui');
-            m.style.display = 'block';
-            setTimeout(() => m.style.opacity = '1', 50);
+            const ui = document.getElementById('main-ui');
+            ui.style.display = 'block';
+            setTimeout(() => ui.style.opacity = '1', 50);
         }
 
-        function openModal(i) {
+        function openFullView(i) {
             const s = staff[i];
-            document.getElementById('m-name').innerText = s.name;
-            document.getElementById('m-rank').innerText = s.rank;
-            document.getElementById('m-photo').innerHTML = `<img src="${s.img}">`;
-            document.getElementById('modal').style.display = 'flex';
+            const modal = document.getElementById('modal');
+            document.getElementById('fullImg').src = s.img;
+            document.getElementById('fullName').innerText = s.name;
+            document.getElementById('fullRank').innerText = s.rank;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Lock scroll
         }
 
-        function closeModal() { document.getElementById('modal').style.display = 'none'; }
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
 
-        // Light Refraction Logic (Glass Touch)
+        // --- Realistic Glass Interaction Logic ---
         document.addEventListener('mousemove', e => {
-            const el = document.querySelectorAll('.formal-panel, .card');
-            el.forEach(item => {
-                const rect = item.getBoundingClientRect();
+            const items = document.querySelectorAll('.formal-panel, .card');
+            items.forEach(el => {
+                const rect = el.getBoundingClientRect();
                 const x = ((e.clientX - rect.left) / rect.width) * 100;
                 const y = ((e.clientY - rect.top) / rect.height) * 100;
-                item.style.setProperty('--x', `${x}%`);
-                item.style.setProperty('--y', `${y}%`);
+                el.style.setProperty('--x', `${x}%`);
+                el.style.setProperty('--y', `${y}%`);
             });
         });
     </script>
