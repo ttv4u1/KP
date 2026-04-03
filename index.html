@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sistem Perutusan Kenaikan Pangkat BPK</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Orbitron:wght@400;700&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --gold: #d4af37;
+            --blue-navy: #010811;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --panel-width: 1028px;
+            --panel-height: 733px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+
+        body {
+            background: var(--blue-navy);
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* --- BACKGROUND INFOGRAPHIC & JATA --- */
+        .bg-system {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background: radial-gradient(circle at 50% 20%, #001f3f 0%, #010811 100%);
+        }
+
+        .cyber-grid {
+            position: absolute;
+            width: 200%; height: 200%;
+            background-image: linear-gradient(rgba(212, 175, 55, 0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(212, 175, 55, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            transform: perspective(1000px) rotateX(60deg) translateY(-50%);
+            animation: gridFlow 25s infinite linear;
+            opacity: 0.5;
+        }
+
+        @keyframes gridFlow { from { background-position: 0 0; } to { background-position: 0 50px; } }
+
+        .jata-bg-watermark {
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: clamp(300px, 60vw, 800px);
+            opacity: 0.04;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* --- LOGO SYSTEM (Fixed & Uniform) --- */
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .logo-box {
+            width: 90px; height: 90px; /* Saiz Seragam */
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+        }
+
+        .logo-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+        /* --- LANDING --- */
+        #landing {
+            position: fixed;
+            inset: 0;
+            background: #010811;
+            z-index: 5000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: 1s cubic-bezier(0.8, 0, 0.2, 1);
+        }
+
+        .btn-init {
+            padding: 20px 50px;
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            letter-spacing: 5px;
+            cursor: pointer;
+            transition: 0.5s;
+        }
+
+        .btn-init:hover { background: var(--gold); color: #000; box-shadow: 0 0 50px var(--gold); }
+
+        /* --- MAIN CONTENT AREA --- */
+        #main-ui {
+            display: none;
+            opacity: 0;
+            width: 100%;
+            padding: 40px 15px;
+            transition: 1.5s;
+        }
+
+        /* --- FORMAL GLASS PANEL (Dimensi 1028x733 Concept) --- */
+        .formal-panel {
+            background: var(--glass);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid var(--glass-border);
+            width: 100%;
+            max-width: var(--panel-width);
+            min-height: 400px; /* Auto scale for mobile */
+            margin: 0 auto 50px;
+            padding: clamp(20px, 5vw, 60px);
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        /* Light Refraction Effect */
+        .formal-panel::before, .card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.12) 0%, transparent 60%);
+            opacity: 0; transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        .formal-panel:hover::before, .card:hover::before { opacity: 1; }
+
+        .formal-panel h2 { font-family: 'Playfair Display', serif; color: var(--gold); font-size: clamp(1.4rem, 4vw, 2.2rem); margin-bottom: 25px; }
+        .formal-panel p { line-height: 1.8; color: #cbd5e1; font-size: clamp(0.85rem, 2vw, 1rem); }
+
+        /* --- GRID --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            max-width: var(--panel-width);
+            margin: auto;
+        }
+
+        @media (min-width: 768px) {
+            .grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; }
+        }
+
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.4s;
+            position: relative;
+        }
+
+        .card:hover { border-color: var(--gold); transform: translateY(-8px); }
+
+        .img-wrap {
+            width: 100%;
+            aspect-ratio: 1028 / 1300; /* Disesuaikan dengan nisbah sijil */
+            background: #000;
+            margin-bottom: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+
+        .card h3 { font-size: 0.7rem; letter-spacing: 0.5px; height: 35px; display: flex; align-items: center; justify-content: center; }
+        .card p { font-size: 0.6rem; color: var(--gold); font-weight: 700; }
+
+        /* --- MODAL (Details) --- */
+        #modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 6000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            backdrop-filter: blur(25px);
+        }
+
+        .modal-box {
+            background: #010811;
+            width: 100%;
+            max-width: 1028px; /* Menggunakan saiz input anda */
+            height: auto;
+            max-height: 90vh;
+            border: 1px solid var(--gold);
+            padding: 40px 20px;
+            position: relative;
+            text-align: center;
+            overflow-y: auto;
+            box-shadow: 0 0 60px rgba(212, 175, 55, 0.2);
+        }
+
+        .modal-photo {
+            width: clamp(150px, 30vw, 220px);
+            height: auto;
+            aspect-ratio: 1028/1300;
+            margin: 20px auto;
+            border: 2px solid var(--gold);
+            padding: 5px;
+        }
+
+        .modal-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 2rem; color: var(--gold); cursor: pointer; }
+
+        footer { margin-top: 80px; text-align: center; border-top: 1px solid var(--glass-border); padding: 40px; opacity: 0.6; font-size: 0.7rem; }
+    </style>
+</head>
+<body>
+
+    <audio id="audio" loop>
+        <source src="https://raw.githubusercontent.com/An-Nasai/music/main/patriotic_malaysia.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Backgrounds -->
+    <div class="bg-system"><div class="cyber-grid"></div></div>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Coat_of_arms_of_Malaysia.svg/500px-Coat_of_arms_of_Malaysia.svg.png" class="jata-bg-watermark">
+
+    <!-- LANDING -->
+    <div id="landing">
+        <div class="logo-container">
+            <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Coat_of_arms_of_Malaysia.svg/500px-Coat_of_arms_of_Malaysia.svg.png"></div>
+            <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Logo_Jabatan_Perkhidmatan_Veterinar.png/640px-Logo_Jabatan_Perkhidmatan_Veterinar.png"></div>
+            <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Badge_of_the_Royal_Malaysia_Police.svg/448px-Badge_of_the_Royal_Malaysia_Police.svg.png"></div>
+        </div>
+        <h3 style="font-family:'Orbitron', sans-serif; letter-spacing: 4px; color:var(--gold);">SYSTEM INITIALIZATION</h3>
+        <button class="btn-init" onclick="launch()">BUKA UTUSAN</button>
+    </div>
+
+    <!-- MAIN UI -->
+    <div id="main-ui">
+        <div class="logo-container">
+            <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Coat_of_arms_of_Malaysia.svg/500px-Coat_of_arms_of_Malaysia.svg.png"></div>
+            <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Logo_Jabatan_Perkhidmatan_Veterinar.png/640px-Logo_Jabatan_Perkhidmatan_Veterinar.png"></div>
+            <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Badge_of_the_Royal_Malaysia_Police.svg/448px-Badge_of_the_Royal_Malaysia_Police.svg.png"></div>
+        </div>
+
+        <div class="formal-panel">
+            <h2>Assalamualaikum dan salam sejahtera,</h2>
+            <p>
+                Tuan/Puan,<br><br>
+                Dengan sukacitanya dimaklumkan bahawa beberapa pegawai dari <b>Bahagian Penguatkuasa Veterinar (BPK)</b> telah berjaya dalam urusan kenaikan pangkat.<br><br>
+                Pihak BPK ingin merakamkan setinggi-tinggi tahniah dan penghargaan atas kejayaan tersebut. Semoga kenaikan pangkat ini menjadi pemangkin untuk terus memberikan perkhidmatan yang cemerlang dan berintegriti.<br><br>
+                Sekali lagi, tahniah dan syabas 👮🏻‍♂️
+            </p>
+            <div style="margin-top: 30px; border-top: 1px solid var(--gold); padding-top: 20px;">
+                <p style="font-weight: 700; color: var(--gold); text-transform: uppercase;">Bahagian Penguatkuasa Veterinar</p>
+                <p style="font-size: 0.75rem; opacity: 0.5;">3 April 2026</p>
+            </div>
+        </div>
+
+        <div class="grid" id="staffGrid"></div>
+
+        <footer>
+            <p>JABATAN PERKHIDMATAN VETERINAR MALAYSIA</p>
+        </footer>
+    </div>
+
+    <!-- MODAL -->
+    <div id="modal" onclick="closeModal()">
+        <div class="modal-box" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="logo-container">
+                <div class="logo-box" style="width:60px; height:60px;"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Coat_of_arms_of_Malaysia.svg/500px-Coat_of_arms_of_Malaysia.svg.png"></div>
+                <div class="logo-box" style="width:60px; height:60px;"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Logo_Jabatan_Perkhidmatan_Veterinar.png/640px-Logo_Jabatan_Perkhidmatan_Veterinar.png"></div>
+                <div class="logo-box" style="width:60px; height:60px;"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Badge_of_the_Royal_Malaysia_Police.svg/448px-Badge_of_the_Royal_Malaysia_Police.svg.png"></div>
+            </div>
+            <div class="modal-photo" id="m-photo"></div>
+            <h2 id="m-name" style="font-family:'Orbitron', sans-serif; margin-bottom:10px; font-size: 1.2rem;"></h2>
+            <p id="m-rank" style="color:var(--gold); font-weight:700;"></p>
+            <p style="margin-top: 40px; font-size: 0.7rem; opacity: 0.5; font-style: italic;">"Peneraju Integriti Penguatkuasaan Veterinar"</p>
+        </div>
+    </div>
+
+    <script>
+        const staff = [
+            { name: "EN. MOHD AZONI BIN BIDIN", rank: "Gred KP2 ke Gred KP3", img: "LINK_8" },
+            { name: "EN. MOHD RIZAL BIN AHMAD", rank: "Gred KP2 ke Gred KP3", img: "LINK_9" },
+            { name: "EN. MD YUNUS BIN MD LAZIN", rank: "Gred KP1 ke Gred KP2", img: "LINK_3" },
+            { name: "EN. MUHAMAD SHAFFIK BIN SINIP", rank: "Gred KP1 ke Gred KP2", img: "LINK_2" },
+            { name: "EN. YUVARAJ A/L RAJENDRAN", rank: "Gred KP1 ke Gred KP2", img: "LINK_4" },
+            { name: "EN. NIK MUHAMAD AFIS", rank: "Gred KP1 ke Gred KP2", img: "LINK_7" },
+            { name: "EN. MUHAMMAD RAIMI BIN ABU", rank: "Gred KP1 ke Gred KP2", img: "LINK_5" },
+            { name: "EN. MUHAMMAD SHAFEQ BIN MD", rank: "Gred KP1 ke Gred KP2", img: "LINK_6" },
+            { name: "EN. RADZI BIN HASHIM", rank: "Gred KP1 ke Gred KP2", img: "LINK_10" },
+            { name: "EN. NURUL AZEAN BIN JA'AFAR", rank: "Gred KP1 ke Gred KP2", img: "LINK_1" }
+        ];
+
+        const container = document.getElementById('staffGrid');
+        staff.forEach((s, i) => {
+            container.innerHTML += `
+                <div class="card" onclick="openModal(${i})">
+                    <div class="img-wrap"><img src="${s.img}" loading="lazy"></div>
+                    <h3>${s.name}</h3>
+                    <p>${s.rank}</p>
+                </div>
+            `;
+        });
+
+        function launch() {
+            document.getElementById('audio').play();
+            document.getElementById('landing').style.transform = 'translateY(-100%)';
+            const m = document.getElementById('main-ui');
+            m.style.display = 'block';
+            setTimeout(() => m.style.opacity = '1', 50);
+        }
+
+        function openModal(i) {
+            const s = staff[i];
+            document.getElementById('m-name').innerText = s.name;
+            document.getElementById('m-rank').innerText = s.rank;
+            document.getElementById('m-photo').innerHTML = `<img src="${s.img}">`;
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        function closeModal() { document.getElementById('modal').style.display = 'none'; }
+
+        // Light Refraction Logic (Glass Touch)
+        document.addEventListener('mousemove', e => {
+            const el = document.querySelectorAll('.formal-panel, .card');
+            el.forEach(item => {
+                const rect = item.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                item.style.setProperty('--x', `${x}%`);
+                item.style.setProperty('--y', `${y}%`);
+            });
+        });
+    </script>
+</body>
+</html>
