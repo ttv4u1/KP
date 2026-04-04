@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>BPK Official Announcement | True Ratio Edition</title>
+    <title>BPK Official | Full Announcement Edition</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Orbitron:wght@400;700&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
             --gold: #d4af37;
             --glass: rgba(255, 255, 255, 0.05);
             --glass-border: rgba(212, 175, 55, 0.3);
-            --panel-max: 1028px;
+            --panel-max: 1000px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
@@ -26,201 +26,112 @@
             overflow-x: hidden;
         }
 
-        /* --- GLOBAL GOLDEN SPACE ENGINE --- */
-        #bgCanvas {
-            position: fixed;
-            inset: 0;
-            z-index: -2;
-            background: black;
-        }
-
+        /* --- BACKGROUND & WATERMARK --- */
+        #bgCanvas { position: fixed; inset: 0; z-index: -2; background: black; }
         .jata-watermark {
-            position: fixed;
-            top: 50%; left: 50%;
+            position: fixed; top: 50%; left: 50%;
             transform: translate(-50%, -50%);
             width: clamp(280px, 60vw, 700px);
-            opacity: 0.06;
-            z-index: -1;
-            pointer-events: none;
+            opacity: 0.06; z-index: -1; pointer-events: none;
         }
 
-        /* --- NAVIGATION BAR --- */
+        /* --- NAVIGATION --- */
         .nav-bar {
-            position: fixed;
-            top: 15px; left: 50%;
+            position: fixed; top: 10px; left: 50%;
             transform: translateX(-50%);
-            z-index: 1000;
-            display: none;
-            gap: 10px;
-            width: 95%;
-            max-width: var(--panel-max);
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0,0,0,0.4);
-            padding: 10px;
-            border-radius: 12px;
-            backdrop-filter: blur(15px);
+            z-index: 1000; display: none; gap: 8px;
+            width: 95%; max-width: var(--panel-max);
+            justify-content: space-between; align-items: center;
+            background: rgba(0,0,0,0.8); padding: 8px 15px;
+            border-radius: 50px; backdrop-filter: blur(15px);
             border: 1px solid var(--glass-border);
         }
 
         .glass-btn {
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid var(--glass-border);
-            color: var(--gold);
-            padding: 10px 18px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(0.6rem, 2vw, 0.75rem);
-            display: flex; align-items: center; gap: 8px;
-            transition: 0.3s;
-            text-transform: uppercase;
+            color: var(--gold); padding: 8px 12px;
+            border-radius: 20px; cursor: pointer;
+            font-family: 'Orbitron', sans-serif; font-size: 0.65rem;
+            transition: 0.3s; text-transform: uppercase;
         }
-
-        .glass-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 20px var(--gold); }
+        .glass-btn:hover { background: var(--gold); color: #000; }
 
         .search-box {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--glass-border);
-            border-radius: 6px;
-            padding: 10px 15px;
-            color: #fff;
-            outline: none;
-            flex-grow: 1;
-            max-width: 300px;
+            background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border);
+            border-radius: 20px; padding: 8px 15px; color: #fff;
+            outline: none; flex-grow: 1; max-width: 200px; font-size: 0.75rem;
         }
 
-        /* --- LOGO SYSTEM --- */
-        .logo-row {
-            display: flex;
-            justify-content: center;
-            gap: clamp(10px, 2vw, 25px);
-            margin-bottom: 25px;
-        }
-
-        .logo-box {
-            width: clamp(75px, 16vw, 90px);
-            height: clamp(75px, 16vw, 90px);
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            padding: 10px;
-            display: flex; align-items: center; justify-content: center;
-        }
-
-        .logo-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
-
-        /* --- CONTENT AREAS --- */
-        #landing {
-            position: fixed; inset: 0; background: #000; z-index: 5000;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            transition: 1.2s ease;
-        }
-
-        #main-ui {
-            display: none; opacity: 0; width: 100%;
-            padding: 110px 15px 40px; transition: 1.5s;
-        }
-
+        /* --- FORMAL PANEL (LONG TEXT) --- */
         .formal-panel {
-            background: var(--glass);
-            backdrop-filter: blur(30px);
+            background: var(--glass); backdrop-filter: blur(30px);
             border: 1px solid var(--glass-border);
-            max-width: var(--panel-max);
-            margin: 0 auto 50px;
-            padding: clamp(25px, 5vw, 60px);
-            border-radius: 8px;
-            position: relative;
-            overflow: hidden;
+            max-width: var(--panel-max); margin: 0 auto 40px;
+            padding: clamp(20px, 5vw, 40px); border-radius: 15px;
+            text-align: left; line-height: 1.8;
         }
+        .formal-panel h2 { font-family: 'Playfair Display', serif; color: var(--gold); margin-bottom: 20px; }
+        .staff-list { margin: 20px 0; padding-left: 20px; color: #ddd; font-size: 0.9rem; }
+        .staff-list li { margin-bottom: 8px; border-bottom: 1px solid rgba(212,175,55,0.1); padding-bottom: 4px; }
 
-        /* Light Reflection Animation */
-        .formal-panel::after, .card::after {
-            content: ""; position: absolute; inset: 0;
-            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.15) 0%, transparent 60%);
-            opacity: 0; transition: opacity 0.3s; pointer-events: none;
+        /* --- AUTOSLIDE SECTION --- */
+        .slider-container {
+            width: 100%; overflow: hidden; padding: 20px 0;
+            margin-bottom: 40px;
         }
-        .formal-panel:hover::after, .card:hover::after { opacity: 1; }
+        .slider-track {
+            display: flex; width: calc(240px * 20);
+            animation: scroll 45s linear infinite;
+        }
+        .slider-track:hover { animation-play-state: paused; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-240px * 10)); } }
+
+        .slide-item {
+            width: 220px; height: 300px; margin: 0 10px;
+            flex-shrink: 0; border-radius: 15px; overflow: hidden;
+            border: 1px solid var(--glass-border); cursor: pointer; transition: 0.4s;
+            position: relative;
+        }
+        .slide-item img { width: 100%; height: 100%; object-fit: cover; }
+        .slide-overlay { position: absolute; bottom: 0; width: 100%; background: linear-gradient(transparent, #000); padding: 15px; text-align: center; font-size: 0.7rem; }
 
         /* --- GRID --- */
         .grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            max-width: var(--panel-max);
-            margin: auto;
+            display: grid; grid-template-columns: repeat(2, 1fr);
+            gap: 12px; max-width: var(--panel-max); margin: auto;
         }
-
-        @media (min-width: 768px) {
-            .grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; }
-        }
+        @media (min-width: 768px) { .grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; } }
 
         .card {
-            background: var(--glass);
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border);
-            padding: 15px; border-radius: 12px;
-            text-align: center; cursor: pointer; transition: 0.4s;
-            position: relative; overflow: hidden;
+            background: var(--glass); border: 1px solid var(--glass-border);
+            padding: 10px; border-radius: 12px; text-align: center; cursor: pointer; transition: 0.3s;
         }
-
-        .card:hover { border-color: var(--gold); transform: translateY(-8px); }
-
-        .img-thumb {
-            width: 100%; aspect-ratio: 3/4; background: #000;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            overflow: hidden; margin-bottom: 12px;
-        }
-
+        .card:hover { border-color: var(--gold); transform: translateY(-5px); }
+        .img-thumb { width: 100%; aspect-ratio: 3/4; overflow: hidden; border-radius: 8px; margin-bottom: 10px; }
         .img-thumb img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* --- MODAL (FULL VIEW ORIGINAL RATIO) --- */
+        /* --- MODAL (TRUE RATIO) --- */
         #modal {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+            position: fixed; inset: 0; background: rgba(0,0,0,0.95);
             z-index: 6000; display: none; justify-content: center; align-items: center;
-            padding: 20px; backdrop-filter: blur(15px);
+            padding: 15px; backdrop-filter: blur(20px);
         }
-
-        .modal-box {
-            width: 100%; max-width: 600px;
-            background: rgba(10, 10, 10, 0.7);
-            border: 1px solid var(--gold);
-            border-radius: 20px; padding: 40px 20px;
-            text-align: center; position: relative;
-            box-shadow: 0 0 80px rgba(212, 175, 55, 0.2);
-            animation: zoomIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        @keyframes zoomIn { from { transform: scale(0.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-
-        .modal-img-container {
-            width: auto;
-            max-width: 100%;
-            max-height: 60vh; /* Had ketinggian supaya tak melimpah skrin */
-            margin: 15px auto;
-            border: 3px solid var(--gold);
-            padding: 5px;
-            background: #000;
-            display: inline-block; /* Mengikut saiz gambar */
-        }
-
+        .modal-box { width: 100%; max-width: 800px; text-align: center; }
         .modal-img-container img {
-            width: auto;
-            height: auto;
-            max-width: 100%;
-            max-height: 58vh;
-            display: block;
-            object-fit: contain; /* Kekalkan saiz asal tanpa crop */
+            max-width: 100%; max-height: 65vh; width: auto; height: auto;
+            border: 2px solid var(--gold); box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
         }
 
-        footer { margin-top: 80px; text-align: center; color: var(--gold); font-size: 0.75rem; padding: 40px; opacity: 0.7; border-top: 1px solid var(--glass-border); }
+        #landing { position: fixed; inset: 0; background: #000; z-index: 5000; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        #main-ui { display: none; opacity: 0; width: 100%; padding: 80px 15px 40px; transition: 1.5s; }
+        footer { margin-top: 50px; text-align: center; color: var(--gold); font-size: 0.7rem; padding: 30px; border-top: 1px solid var(--glass-border); }
     </style>
 </head>
 <body>
 
     <audio id="audio" loop>
-        <source src="https://github.com/ttv4u1/KP/raw/main/GM.mp3" type="audio/mpeg">
+        <source src="https://github.com/ttv4u1/KP/raw/main/CC.mp3" type="audio/mpeg">
     </audio>
 
     <canvas id="bgCanvas"></canvas>
@@ -228,37 +139,35 @@
 
     <!-- NAVIGATION -->
     <div class="nav-bar" id="nav">
-        <button class="glass-btn" onclick="goHome()">🏠 <span class="nav-text">Home</span></button>
-        <button class="glass-btn" onclick="toggleLang()">🌐 <span id="langBtnText">English</span></button>
+        <button class="glass-btn" onclick="location.reload()">🏠</button>
         <input type="text" id="searchInput" class="search-box" placeholder="Cari..." onkeyup="searchStaff(this.value)">
+        <button class="glass-btn" onclick="toggleLang()">🌐 <span id="langBtnText">English</span></button>
     </div>
 
-    <!-- 1. LANDING -->
+    <!-- 1. LANDING SCREEN -->
     <div id="landing">
-        <div class="logo-row">
-            <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Coat_of_arms_of_Malaysia.svg/500px-Coat_of_arms_of_Malaysia.svg.png"></div>
-            <div class="logo-box"><img src="https://github.com/ttv4u1/KP/raw/main/DVS.svg"></div>
-            <div class="logo-box"><img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png"></div>
+        <div style="display: flex; gap: 10px; margin-bottom: 25px;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Coat_of_arms_of_Malaysia.svg/500px-Coat_of_arms_of_Malaysia.svg.png" width="60">
+            <img src="https://github.com/ttv4u1/KP/raw/main/DVS.svg" width="60">
+            <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" width="60">
         </div>
-        <h2 id="landingTitle" style="font-family:'Orbitron', sans-serif; letter-spacing: 5px; color:var(--gold); text-align:center; padding: 0 15px;">BPK CORPORAL SYSTEM</h2>
-        <button class="glass-btn" style="margin-top:35px; padding: 18px 45px;" onclick="launch()"><span id="launchText">Mula / Start</span></button>
+        <h2 style="font-family:'Orbitron', sans-serif; letter-spacing: 5px; color:var(--gold); text-align: center;">BPK CORPORAL SYSTEM</h2>
+        <button class="glass-btn" style="margin-top:40px; padding: 15px 45px; font-size: 1rem;" onclick="launch()">MULA / START</button>
     </div>
 
-    <!-- 2. MAIN PAGE -->
+    <!-- 2. MAIN CONTENT AREA -->
     <div id="main-ui">
-        <div class="logo-row">
-            <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Coat_of_arms_of_Malaysia.svg/500px-Coat_of_arms_of_Malaysia.svg.png"></div>
-            <div class="logo-box"><img src="https://github.com/ttv4u1/KP/raw/main/DVS.svg"></div>
-            <div class="logo-box"><img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png"></div>
+        
+        <div class="formal-panel">
+            <h2 id="formalGreet"></h2>
+            <div id="formalBody"></div>
+            <ul class="staff-list" id="staffList"></ul>
+            <div id="formalClosing"></div>
         </div>
 
-        <div class="formal-panel">
-            <h2 id="formalGreet" style="font-family:'Playfair Display', serif; margin-bottom: 20px;"></h2>
-            <p id="formalBody"></p>
-            <div style="margin-top: 35px; border-top: 1px solid var(--gold); padding-top: 20px;">
-                <p id="deptName" style="font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 1px;"></p>
-                <p id="dateText" style="font-size: 0.8rem; opacity: 0.6; margin-top: 5px;"></p>
-            </div>
+        <h3 style="text-align:center; font-family:'Orbitron', sans-serif; color:var(--gold); margin-bottom:15px; font-size: 0.8rem; letter-spacing: 2px;">HALL OF FAME</h3>
+        <div class="slider-container">
+            <div class="slider-track" id="sliderTrack"></div>
         </div>
 
         <div class="grid" id="staffGrid"></div>
@@ -268,140 +177,105 @@
         </footer>
     </div>
 
-    <!-- 3. MODAL (BACK BUTTON & ORIGINAL RATIO IMG) -->
+    <!-- 3. MODAL -->
     <div id="modal" onclick="closeModal()">
         <div class="modal-box" onclick="event.stopPropagation()">
-            <button class="glass-btn" onclick="closeModal()" style="position:absolute; top:15px; right:15px;">⬅ <span id="backBtnText">Back</span></button>
-            
-            <div class="logo-row" style="margin-bottom: 10px;">
-                <div class="logo-box" style="width:55px; height:55px;"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Coat_of_arms_of_Malaysia.svg/500px-Coat_of_arms_of_Malaysia.svg.png"></div>
-                <div class="logo-box" style="width:55px; height:55px;"><img src="https://github.com/ttv4u1/KP/raw/main/DVS.svg"></div>
-                <div class="logo-box" style="width:55px; height:55px;"><img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png"></div>
+            <div class="modal-img-container"><img id="fullImg" src=""></div>
+            <div style="margin-top:20px;">
+                <h2 id="fullName" style="font-family:'Orbitron', sans-serif; font-size: 1.3rem;"></h2>
+                <p id="fullRank" style="color:var(--gold); font-weight: 700; margin-top: 10px;"></p>
+                <button class="glass-btn" onclick="closeModal()" style="margin-top:25px;">TUTUP / CLOSE</button>
             </div>
-
-            <div class="modal-img-container">
-                <img id="fullImg" src="" alt="Saiz Asal">
-            </div>
-
-            <h2 id="fullName" style="font-family:'Orbitron', sans-serif; font-size: clamp(1rem, 3vw, 1.2rem); margin-top: 15px;"></h2>
-            <p id="fullRank" style="color:var(--gold); font-weight:700; font-size: 0.9rem; margin-top: 5px;"></p>
         </div>
     </div>
 
     <script>
+        const staff = [
+            { name: "EN. MOHD AZONI BIN BIDIN", ms: "Pembantu Penguat Kuasa KP2 ke Gred KP3", en: "Asst. Enforcement Officer KP2 to KP3", img: "https://github.com/ttv4u1/KP/raw/main/AZONI%20BIDIN.JPG" },
+            { name: "EN. MOHD RIZAL BIN AHMAD", ms: "Pembantu Penguat Kuasa KP2 ke Gred KP3", en: "Asst. Enforcement Officer KP2 to KP3", img: "https://github.com/ttv4u1/KP/raw/main/RIZAL%20AHMAD.JPG" },
+            { name: "EN. MD YUNUS BIN MD LAZIN @ MD LAZIM", ms: "Pembantu Penguat Kuasa KP1 ke Gred KP2", en: "Asst. Enforcement Officer KP1 to KP2", img: "https://github.com/ttv4u1/KP/raw/main/YUNUS%20LAZIN.JPG" },
+            { name: "EN. MUHAMAD SHAFFIK BIN SINIP", ms: "Pembantu Penguat Kuasa KP1 ke Gred KP2", en: "Asst. Enforcement Officer KP1 to KP2", img: "https://github.com/ttv4u1/KP/raw/main/SHAFFIK%20SINIP.JPG" },
+            { name: "EN. YUVARAJ A/L RAJENDRAN", ms: "Pembantu Penguat Kuasa KP1 ke Gred KP2", en: "Asst. Enforcement Officer KP1 to KP2", img: "https://github.com/ttv4u1/KP/raw/main/YUVARAJ.JPG" },
+            { name: "EN. NIK MUHAMAD AFIS BIN NIK ABDULLAH", ms: "Pembantu Penguat Kuasa KP1 ke Gred KP2", en: "Asst. Enforcement Officer KP1 to KP2", img: "https://github.com/ttv4u1/KP/raw/main/AFIS%20NIK.JPG" },
+            { name: "EN. MUHAMMAD RAIMI BIN ABU RAHIM", ms: "Pembantu Penguat Kuasa KP1 ke Gred KP2", en: "Asst. Enforcement Officer KP1 to KP2", img: "https://github.com/ttv4u1/KP/raw/main/RAIMI%20ABU%20RAHIM.JPG" },
+            { name: "EN. MUHAMMAD SHAFEQ BIN MD KAMIL", ms: "Pembantu Penguat Kuasa KP1 ke Gred KP2", en: "Asst. Enforcement Officer KP1 to KP2", img: "https://github.com/ttv4u1/KP/raw/main/SHAFEQ%20MD%20KAMIL.JPG" },
+            { name: "EN. RADZI BIN HASHIM", ms: "Pembantu Penguat Kuasa KP1 ke Gred KP2", en: "Asst. Enforcement Officer KP1 to KP2", img: "https://github.com/ttv4u1/KP/raw/main/RADZI%20HASHIM.JPG" },
+            { name: "EN. NURUL AZEAN BIN JA'AFAR", ms: "Pembantu Penguat Kuasa KP1 ke Gred KP2", en: "Asst. Enforcement Officer KP1 to KP2", img: "https://github.com/ttv4u1/KP/raw/main/NURUL%20AZEAN.JPG" }
+        ];
+
         const langData = {
             ms: {
-                greet: "Assalamualaikum & Salam Sejahtera,",
-                body: "Tuan/Puan,<br><br>Dengan sukacitanya dimaklumkan bahawa beberapa pegawai dari Bahagian Penguatkuasa Veterinar telah berjaya dalam urusan kenaikan pangkat. Semoga kenaikan pangkat ini menjadi pemangkin untuk terus memberikan perkhidmatan yang cemerlang dan berintegriti.<br><br>Sekali lagi, tahniah dan syabas 👮🏻‍♂️",
-                dept: "Bahagian Penguatkuasa Veterinar",
-                date: "3 April 2026",
+                greet: "Assalamualaikum dan salam sejahtera,",
+                intro: "Tuan/Puan,<br><br>Dengan sukacitanya dimaklumkan bahawa beberapa pegawai dari Bahagian Penguatkuasa Veterinar telah berjaya dalam urusan kenaikan pangkat seperti berikut:",
+                closing: "Sehubungan itu, pihak BPK ingin merakamkan setinggi-tinggi tahniah dan penghargaan atas kejayaan tersebut. Semoga kenaikan pangkat ini menjadi pemangkin untuk terus memberikan perkhidmatan yang cemerlang dan berintegriti.<br><br>Sekali lagi, tahniah dan syabas👮🏻‍♂️<br><br>Sekian, terima kasih.<br><br><strong>BAHAGIAN PENGUATKUASA VETERINAR</strong><br>3 April 2026",
                 footer: "JABATAN PERKHIDMATAN VETERINAR MALAYSIA",
                 search: "Cari nama...",
-                back: "Kembali",
-                langBtn: "English",
-                home: "Utama"
+                langBtn: "English"
             },
             en: {
                 greet: "Greetings and Peace be upon you,",
-                body: "To whom it may concern,<br><br>We are pleased to announce that several officers from the Veterinary Enforcement Division have successfully been promoted. May this promotion serve as a catalyst to continue providing excellent and high-integrity service.<br><br>Once again, congratulations and well done 👮🏻‍♂️",
-                dept: "Veterinary Enforcement Division",
-                date: "April 3, 2026",
+                intro: "To whom it may concern,<br><br>We are pleased to announce that several officers from the Veterinary Enforcement Division have been successfully promoted as follows:",
+                closing: "In this regard, BPK would like to express our heartiest congratulations and appreciation for this success. May this promotion serve as a catalyst to continue providing excellent and high-integrity service.<br><br>Once again, congratulations and well done👮🏻‍♂️<br><br>Thank you.<br><br><strong>VETERINARY ENFORCEMENT DIVISION</strong><br>April 3, 2026",
                 footer: "DEPARTMENT OF VETERINARY SERVICES MALAYSIA",
                 search: "Search name...",
-                back: "Back",
-                langBtn: "Bahasa Melayu",
-                home: "Home"
+                langBtn: "Bahasa Melayu"
             }
         };
 
         let currentLang = 'ms';
 
-        const staff = [
-            { name: "EN. MOHD AZONI BIN BIDIN", ms: "Gred KP2 ke Gred KP3", en: "Grade KP2 to Grade KP3", img: "https://github.com/ttv4u1/KP/raw/main/AZONI%20BIDIN.JPG" },
-            { name: "EN. MOHD RIZAL BIN AHMAD", ms: "Gred KP2 ke Gred KP3", en: "Grade KP2 to Grade KP3", img: "https://github.com/ttv4u1/KP/raw/main/RIZAL%20AHMAD.JPG" },
-            { name: "EN. MD YUNUS BIN MD LAZIN", ms: "Gred KP1 ke Gred KP2", en: "Grade KP1 to Grade KP2", img: "https://github.com/ttv4u1/KP/raw/main/YUNUS%20LAZIN.JPG" },
-            { name: "EN. MUHAMAD SHAFFIK BIN SINIP", ms: "Gred KP1 ke Gred KP2", en: "Grade KP1 to Grade KP2", img: "https://github.com/ttv4u1/KP/raw/main/SHAFFIK%20SINIP.JPG" },
-            { name: "EN. YUVARAJ A/L RAJENDRAN", ms: "Gred KP1 ke Gred KP2", en: "Grade KP1 to Grade KP2", img: "https://github.com/ttv4u1/KP/raw/main/YUVARAJ.JPG" },
-            { name: "EN. NIK MUHAMAD AFIS BIN NIK ABDULLAH", ms: "Gred KP1 ke Gred KP2", en: "Grade KP1 to Grade KP2", img: "https://github.com/ttv4u1/KP/raw/main/AFIS%20NIK.JPG" },
-            { name: "EN. MUHAMMAD RAIMI BIN ABU RAHIM", ms: "Gred KP1 ke Gred KP2", en: "Grade KP1 to Grade KP2", img: "https://github.com/ttv4u1/KP/raw/main/RAIMI%20ABU%20RAHIM.JPG" },
-            { name: "EN. MUHAMMAD SHAFEQ BIN MD KAMIL", ms: "Gred KP1 ke Gred KP2", en: "Grade KP1 to Grade KP2", img: "https://github.com/ttv4u1/KP/raw/main/SHAFEQ%20MD%20KAMIL.JPG" },
-            { name: "EN. RADZI BIN HASHIM", ms: "Gred KP1 ke Gred KP2", en: "Grade KP1 to Grade KP2", img: "https://github.com/ttv4u1/KP/raw/main/RADZI%20HASHIM.JPG" },
-            { name: "EN. NURUL AZEAN BIN JA'AFAR", ms: "Gred KP1 ke Gred KP2", en: "Grade KP1 to Grade KP2", img: "https://github.com/ttv4u1/KP/raw/main/NURUL%20AZEAN.JPG" }
-        ];
-
-        // --- GLOBAL PARTICLE ENGINE ---
-        const canvas = document.getElementById('bgCanvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-
-        function initParticles() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            particles = [];
-            for (let i = 0; i < 180; i++) {
-                particles.push({
-                    x: Math.random() * canvas.width, y: Math.random() * canvas.height,
-                    s: Math.random() * 2 + 0.5, vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4,
-                    a: Math.random(), f: Math.random() * 0.02
-                });
-            }
-        }
-
-        function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            let floor = ctx.createLinearGradient(0, canvas.height, 0, canvas.height - 250);
-            floor.addColorStop(0, 'rgba(212, 175, 55, 0.2)'); floor.addColorStop(1, 'transparent');
-            ctx.fillStyle = floor; ctx.fillRect(0, canvas.height - 250, canvas.width, 250);
-
-            particles.forEach(p => {
-                p.x += p.vx; p.y += p.vy; p.a += p.f;
-                if (p.a > 1 || p.a < 0) p.f *= -1;
-                if (p.x > canvas.width) p.x = 0; if (p.x < 0) p.x = canvas.width;
-                if (p.y > canvas.height) p.y = 0; if (p.y < 0) p.y = canvas.height;
-                ctx.globalAlpha = p.a; ctx.fillStyle = "#D4AF37";
-                ctx.beginPath(); ctx.arc(p.x, p.y, p.s, 0, Math.PI * 2); ctx.fill();
-            });
-            requestAnimationFrame(draw);
-        }
-
         // --- CORE FUNCTIONS ---
+        function launch() {
+            document.getElementById('audio').play();
+            document.getElementById('landing').style.display = 'none';
+            document.getElementById('nav').style.display = 'flex';
+            document.getElementById('main-ui').style.display = 'block';
+            setTimeout(() => document.getElementById('main-ui').style.opacity = '1', 50);
+            updateUI();
+            renderSlider();
+        }
+
         function updateUI() {
             const d = langData[currentLang];
             document.getElementById('formalGreet').innerText = d.greet;
-            document.getElementById('formalBody').innerHTML = d.body;
-            document.getElementById('deptName').innerText = d.dept;
-            document.getElementById('dateText').innerText = d.date;
+            document.getElementById('formalBody').innerHTML = d.intro;
+            document.getElementById('formalClosing').innerHTML = d.closing;
             document.getElementById('footerText').innerText = d.footer;
             document.getElementById('langBtnText').innerText = d.langBtn;
-            document.getElementById('backBtnText').innerText = d.back;
             document.getElementById('searchInput').placeholder = d.search;
+
+            const listEl = document.getElementById('staffList');
+            listEl.innerHTML = '';
+            staff.forEach((s, idx) => {
+                const rank = currentLang === 'ms' ? s.ms : s.en;
+                listEl.innerHTML += `<li>${idx+1}. ${s.name} – ${rank}</li>`;
+            });
             renderStaff(staff);
         }
 
         function renderStaff(list) {
             const grid = document.getElementById('staffGrid');
             grid.innerHTML = '';
-            list.forEach(s => {
-                const idx = staff.indexOf(s);
-                const rank = currentLang === 'ms' ? s.ms : s.en;
+            list.forEach((s) => {
                 grid.innerHTML += `
-                    <div class="card" onclick="openFullView(${idx})">
+                    <div class="card" onclick="openFullView(${staff.indexOf(s)})">
                         <div class="img-thumb"><img src="${s.img}"></div>
-                        <h3>${s.name}</h3>
-                        <p>${rank.split(currentLang === 'ms' ? 'ke' : 'to').pop()}</p>
+                        <h3 style="font-size:0.75rem;">${s.name}</h3>
                     </div>`;
             });
         }
 
-        function toggleLang() { currentLang = currentLang === 'ms' ? 'en' : 'ms'; updateUI(); }
-
-        function launch() {
-            document.getElementById('audio').play();
-            document.getElementById('landing').style.transform = 'translateY(-100%)';
-            document.getElementById('nav').style.display = 'flex';
-            document.getElementById('main-ui').style.display = 'block';
-            setTimeout(() => document.getElementById('main-ui').style.opacity = '1', 50);
-            updateUI();
+        function renderSlider() {
+            const track = document.getElementById('sliderTrack');
+            const items = [...staff, ...staff]; 
+            track.innerHTML = '';
+            items.forEach((s) => {
+                track.innerHTML += `
+                    <div class="slide-item" onclick="openFullView(${staff.indexOf(s)})">
+                        <img src="${s.img}">
+                        <div class="slide-overlay">${s.name}</div>
+                    </div>`;
+            });
         }
 
         function openFullView(i) {
@@ -414,21 +288,31 @@
         }
 
         function closeModal() { document.getElementById('modal').style.display = 'none'; document.body.style.overflow = 'auto'; }
-        function goHome() { window.scrollTo({top: 0, behavior: 'smooth'}); }
+        function toggleLang() { currentLang = currentLang === 'ms' ? 'en' : 'ms'; updateUI(); renderSlider(); }
         function searchStaff(val) {
             const filtered = staff.filter(s => s.name.toLowerCase().includes(val.toLowerCase()));
             renderStaff(filtered);
         }
 
-        initParticles(); draw();
-        window.addEventListener('resize', initParticles);
-        document.addEventListener('mousemove', e => {
-            document.querySelectorAll('.formal-panel, .card').forEach(el => {
-                const r = el.getBoundingClientRect();
-                el.style.setProperty('--x', `${((e.clientX - r.left)/r.width)*100}%`);
-                el.style.setProperty('--y', `${((e.clientY - r.top)/r.height)*100}%`);
+        // --- BACKGROUND ENGINE ---
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+        let pts = [];
+        function init() {
+            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+            pts = [];
+            for(let i=0; i<80; i++) pts.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, s:Math.random()*2, v:Math.random()*0.4});
+        }
+        function draw() {
+            ctx.clearRect(0,0,canvas.width, canvas.height);
+            ctx.fillStyle = "#D4AF37";
+            pts.forEach(p => {
+                p.y -= p.v; if(p.y < 0) p.y = canvas.height;
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.s, 0, Math.PI*2); ctx.fill();
             });
-        });
+            requestAnimationFrame(draw);
+        }
+        window.onresize = init; init(); draw();
     </script>
 </body>
 </html>
